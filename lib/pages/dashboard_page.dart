@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import '../widgets/bottom_navbar.dart';
-import 'add_to_cart_page.dart';
-import 'notification_page.dart';
-import 'feedback_page.dart';
-import 'profile_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -13,32 +9,31 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  int _selectedIndex = 0;
-
   static const Color primaryColor = Color(0xFF48c7bb);
-
-  late final List<Widget> _pages = [
-    _dashboardHome(),
-    AddToCartPage(),
-    NotificationPage(),
-    FeedbackPage(),
-    ProfilePage(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
+    void onItemTapped(int index) {
+      const routes = [
+        '/dashboard',
+        '/cart',
+        '/notifications',
+        '/feedback',
+        '/profile',
+      ];
+      final target = routes[index];
+      final current = ModalRoute.of(context)?.settings.name;
+      if (current != target) {
+        Navigator.pushReplacementNamed(context, target);
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
-      body: _pages[_selectedIndex],
+      body: _dashboardHome(),
       bottomNavigationBar: BottomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
+        selectedIndex: 0,
+        onItemTapped: onItemTapped,
       ),
     );
   }
@@ -77,9 +72,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     ),
                     IconButton(
                       onPressed: () {
-                        setState(() {
-                          _selectedIndex = 1; // Go to Cart
-                        });
+                        Navigator.pushReplacementNamed(context, '/cart');
                       },
                       icon: const Icon(
                         Icons.shopping_cart_outlined,

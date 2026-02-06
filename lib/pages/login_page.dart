@@ -7,8 +7,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController =
+      TextEditingController(text: 'admin');
+  final TextEditingController _passwordController =
+      TextEditingController(text: 'admin');
 
   void _login() {
     String name = _nameController.text;
