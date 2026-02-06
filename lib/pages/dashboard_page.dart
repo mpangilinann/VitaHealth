@@ -192,11 +192,19 @@ class _DashboardPageState extends State<DashboardPage> {
           const SizedBox(height: 32),
 
           // ===== FEATURED =====
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              'Featured',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                const Text(
+                  'Featured',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(width: 12),
+                const Expanded(
+                  child: Divider(color: Colors.black, thickness: 1),
+                ),
+              ],
             ),
           ),
 
