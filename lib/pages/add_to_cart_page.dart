@@ -230,21 +230,25 @@ class _ProductImage extends StatelessWidget {
         width: 56,
         height: 56,
         color: Color(0xFFEFF6F5),
-        child: Image.asset(
-          imagePath,
-          fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) {
-            return Container(
-              color: Color(0xFFEFF6F5),
-              child: Icon(
-                Icons.local_pharmacy,
-                color: Color(0xFF2BAE9E),
-                size: 24,
-              ),
-            );
-          },
+        padding: EdgeInsets.all(4), 
+        child: FittedBox(
+          fit: BoxFit.contain, 
+          child: Image.asset(
+            imagePath,
+            errorBuilder: (context, error, stackTrace) {
+              return Container(
+                color: Color(0xFFEFF6F5),
+                child: Icon(
+                  Icons.local_pharmacy,
+                  color: Color(0xFF2BAE9E),
+                  size: 24,
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
   }
 }
+
